@@ -1,0 +1,50 @@
+config: 
+  times: 21
+  gh_user: izawa
+  gh_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  gh_repos: izawa/kanazawarb.meetup
+
+data:
+- title: 第#<%= @times %>回meetup 施設予約をする
+  body: |
+    - [x] 施設予約アカウントを取得
+    - [ ] 希望日を予約
+    - [ ] 予約日をアナウンス
+  milestone: meetup <%= @times %> pre-process
+
+- title: doorkeeperを立てる
+  milestone: meetup <%= @times %> pre-process
+
+- title: 告知活動を行う(申し込み開始時 - 各種SNS)
+  milestone: meetup <%= @times %> pre-process
+
+- title: 告知活動を行う(一週間前 - 各種SNS)
+  milestone: meetup <%= @times %> pre-process
+
+- title: 告知活動を行う(前々日 - 各種SNS)
+  milestone: meetup <%= @times %> pre-process
+
+- title: meettup<%= @times %>懇親会のお店を予約する
+  body: |
+    - [ ] お店の選定
+    - [ ] 予約の実施
+  milestone: meetup <%= @times %> pre-process
+
+- title: ツイートまとめを作成する(togetter)
+  milestone: meetup <%= @times %> post-process
+
+- title: ツイートまとめを告知する(各種SNS)
+  milestone: meetup <%= @times %> post-process
+
+- title: 写真アルバムを作成する(30days)
+  milestone: meetup <%= @times %> post-process
+
+- title: 写真アルバムを告知する(各種SNS)
+  milestone: meetup <%= @times %> post-process
+
+- title: レポートページを作成する(github pages)
+  milestone: meetup <%= @times %> post-process
+
+- title: レポートページを告知する(各種SNS)
+  milestone: meetup <%= @times %> post-process
+

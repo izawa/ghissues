@@ -1,0 +1,13 @@
+config: 
+  times: 21
+  gh_user: izawa
+  gh_token: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  gh_repos: izawa/kanazawarb.meetup
+
+data:
+- title: 第#<%= @times %>回meetup 施設予約をする
+  body: |
+    - [x] 施設予約アカウントを取得
+    - [ ] 希望日を予約
+    - [ ] 予約日をアナウンス
+  milestone: meetup <%= @times %> pre-process
