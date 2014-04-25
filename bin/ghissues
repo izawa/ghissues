@@ -1,0 +1,60 @@
+#!/usr/bin/env ruby
+
+require 'ghissues'
+
+require 'erb'
+require 'yaml'
+require 'optparse'
+
+# parsing options
+params = ARGV.getopts('f:')
+
+unless params['f']
+  puts "-f required."
+  exit 1
+end
+dataFile = params['f']
+
+# check data file readable.
+unless FileTest.readable?(dataFile)
+  puts "can\'t read #{dataFile}"
+  exit 1
+end
+
+# read from yaml data file.
+issues = YAML.load_file(dataFile)
+
+#values for erb replacement.
+@times = issues['config']['times']
+
+# config Ghissues.
+config = {
+  :user => issues['config']['gh_user'],
+  :token => issues['config']['gh_token'],
+  :repo => issues['config']['gh_repos']
+}
+Ghissues::Ghissues.initialize(config)
+
+# registry issues to github repos.
+issues['data'].each do |issue|
+  title = ERB.new(issue['title']).result
+
+
+  if issue['body']
+    body  = ERB.new(issue['body']).result
+  else
+    body = ""
+  end
+  if issue['milestone']
+    milestone = ERB.new(issue['milestone']).result
+  else
+    milestone = ""
+  end
+
+  puts title
+  puts body
+  puts milestone
+
+  # create github issue.
+  Octokit.create_issue(issues['config']['gh_repos'], title, body, {:milestone  => Ghissues::Ghissues.milestoneText2number(milestone) } )
+end
