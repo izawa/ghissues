@@ -1,24 +1,21 @@
 # Ghissues
 
-TODO: Write a gem description
+Github issue registrator with Yaml data file.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Create gem file.
 
-    gem 'ghissues'
+    $ rake build
 
-And then execute:
 
-    $ bundle
+install it yourself as:
 
-Or install it yourself as:
-
-    $ gem install ghissues
+    $ gem install pkg/ghissues-x.xx.gem
 
 ## Usage
 
-TODO: Write usage instructions here
+    $ ghissues -f <yaml data file>
 
 ## Contributing
 
