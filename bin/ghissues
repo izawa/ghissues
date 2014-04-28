@@ -52,33 +52,26 @@ issues['data'].each do |issue|
     body = nil
   end
 
+  option = { }
+
   if issue['milestone']
-    milestone = ERB.new(issue['milestone']).result
-  else
-    milestone = nil
+    option[:milestone] = Ghissues::Ghissues.milestoneText2number(ERB.new(issue['milestone']).result)
   end
 
   if issue['labels']
-    labels = ERB.new(issue['labels'].join(',')).result
-  else
-    labels = nil
+    option[:labels] = ERB.new(issue['labels'].join(',')).result
   end
 
   if issue['assignee']
-    assignee = ERB.new(issue['assignee']).result
-  else
-    assignee = nil
+    option[:assignee] = ERB.new(issue['assignee']).result
   end
-
   puts title
   puts body
-  puts milestone
-  puts labels
-  puts assignee
+  puts option.to_s
   
   # create github issue.
   begin
-    Octokit.create_issue(issues['config']['gh_repos'], title, body, {:milestone  => Ghissues::Ghissues.milestoneText2number(milestone), :labels => labels, :assignee => assignee} )
+    Octokit.create_issue(issues['config']['gh_repos'], title, body, option )
   rescue => e
     puts e.to_s
     exit 1
