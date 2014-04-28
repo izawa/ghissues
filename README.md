@@ -19,7 +19,7 @@ install it yourself as:
 
 ## YAML format
 
-required: gh_user, gh_token, gh_repos, title
+required: gh_user, gh_token, gh_repos, title  
 
 optional: times, body, milestone, labels, assignee
 
