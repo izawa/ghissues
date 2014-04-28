@@ -49,7 +49,7 @@ issues['data'].each do |issue|
   if issue['body']
     body  = ERB.new(issue['body']).result
   else
-    body = ""
+    body = nil
   end
 
   if issue['milestone']
