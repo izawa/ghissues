@@ -33,7 +33,7 @@ class Ghissues
         return ret[:number]
       end
     else
-      Octokit.create_milestone(@@config[:repo], str)
+      ret = Octokit.create_milestone(@@config[:repo], str)
       fetchMilestones(@@config[:repo])
       return ret[:number]
     end
