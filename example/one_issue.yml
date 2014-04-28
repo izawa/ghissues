@@ -11,3 +11,8 @@ data:
     - [ ] 希望日を予約
     - [ ] 予約日をアナウンス
   milestone: meetup <%= @times %> pre-process
+  labels:
+    - bug
+    - question
+    - help wanted
+    - some label

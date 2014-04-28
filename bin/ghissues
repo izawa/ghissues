@@ -45,16 +45,25 @@ issues['data'].each do |issue|
   else
     body = ""
   end
+
   if issue['milestone']
     milestone = ERB.new(issue['milestone']).result
   else
     milestone = ""
   end
 
+  if issue['labels']
+    labels = ERB.new(issue['labels'].join(',')).result
+  else
+    labels = ""
+  end
+
+
   puts title
   puts body
   puts milestone
+  puts labels
 
   # create github issue.
-  Octokit.create_issue(issues['config']['gh_repos'], title, body, {:milestone  => Ghissues::Ghissues.milestoneText2number(milestone) } )
+  Octokit.create_issue(issues['config']['gh_repos'], title, body, {:milestone  => Ghissues::Ghissues.milestoneText2number(milestone), :labels => labels } )
 end
