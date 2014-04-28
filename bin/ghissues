@@ -6,6 +6,8 @@ require 'erb'
 require 'yaml'
 require 'optparse'
 
+Version = Ghissues::VERSION
+
 # parsing options
 params = ARGV.getopts('f:')
 
