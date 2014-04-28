@@ -17,6 +17,12 @@ install it yourself as:
 
     $ ghissues -f <yaml data file>
 
+## YAML format
+
+required: gh_user, gh_token, gh_repos, title
+optional: times, body, milestone, labels, assignee
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/ghissues/fork )
