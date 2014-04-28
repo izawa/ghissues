@@ -11,7 +11,7 @@ Version = Ghissues::VERSION
 # parsing options
 begin
   params = ARGV.getopts('f:')
-  rescue => e
+rescue => e
   puts e.to_s
   exit 1
 end
@@ -55,19 +55,19 @@ issues['data'].each do |issue|
   if issue['milestone']
     milestone = ERB.new(issue['milestone']).result
   else
-    milestone = ""
+    milestone = nil
   end
 
   if issue['labels']
     labels = ERB.new(issue['labels'].join(',')).result
   else
-    labels = ""
+    labels = nil
   end
 
   if issue['assignee']
     assignee = ERB.new(issue['assignee']).result
   else
-    assignee = ""
+    assignee = nil
   end
 
   puts title
@@ -77,5 +77,10 @@ issues['data'].each do |issue|
   puts assignee
   
   # create github issue.
-  Octokit.create_issue(issues['config']['gh_repos'], title, body, {:milestone  => Ghissues::Ghissues.milestoneText2number(milestone), :labels => labels, :assignee => assignee} )
+  begin
+    Octokit.create_issue(issues['config']['gh_repos'], title, body, {:milestone  => Ghissues::Ghissues.milestoneText2number(milestone), :labels => labels, :assignee => assignee} )
+  rescue => e
+    puts e.to_s
+    exit 1
+  end
 end
