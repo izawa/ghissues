@@ -9,7 +9,12 @@ require 'optparse'
 Version = Ghissues::VERSION
 
 # parsing options
-params = ARGV.getopts('f:')
+begin
+  params = ARGV.getopts('f:')
+  rescue => e
+  puts e.to_s
+  exit 1
+end
 
 unless params['f']
   puts "-f required."
