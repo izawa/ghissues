@@ -1,0 +1,34 @@
+# ghissues data yaml schema for kwalify.
+type: map
+mapping:
+  "config":
+    required: yes
+    type: map
+    mapping:
+      "times":
+        type: text
+      "gh_user":
+        required: yes
+      "gh_token":
+        required: yes
+      "gh_repos":
+        required: yes
+  "data":
+    required: yes
+    type: seq
+    sequence:
+      - type: map
+        mapping:
+          "title":
+            required: yes
+            type: text
+          "body":
+            type: text
+          "milestone":
+            type: text
+          "labels":
+            type: seq
+            sequence:
+              - type: text
+          "assignee":
+            type: text
