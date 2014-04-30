@@ -24,7 +24,6 @@ class Ghissues
 
   def self.milestoneText2number(str)
     return nil unless str
-    end
     if @@milestones.size > 0
       match_array = @@milestones.select { |item| item[:title] == str }
       if match_array.size > 0
