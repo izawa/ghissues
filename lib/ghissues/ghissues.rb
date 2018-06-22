@@ -16,10 +16,11 @@ class Ghissues
       c.login = user
       c.access_token = token
     end
+    Octokit.auto_paginate = true # e.g. over 30 OPEN milestones
   end
 
   def self.fetchMilestones(repo)
-    @@milestones = Octokit.list_milestones(repo)
+    @@milestones = Octokit.list_milestones(repo, direction: "desc")
   end
 
   def self.milestoneText2number(str)
